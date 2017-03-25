@@ -1,13 +1,11 @@
 import sqlite3
 import genanki
 import requests
-#import json
 from tkinter import ttk
-import tkinter
 
 lang_names = {'en': 'English'}
-class Adder(ttk.Frame):
-    """The adders gui and functions."""
+
+class MainFrame(ttk.Frame):
     def __init__(self, parent, *args, **kwargs):
         ttk.Frame.__init__(self, parent, *args, **kwargs)
         self.root = parent
@@ -70,11 +68,9 @@ class Adder(ttk.Frame):
             child.grid_configure(padx=5, pady=5)
     
     def load_words(self):
-#        dbfile = '/home/carles/Desktop/kindletoanki/vocab.db'
         dbfile = self.db_entry.get()
         lang = 'en'
         self.words = load_words(dbfile, lang)
-        print(self.words)
         if self.words.keys():
             self.loadOED_button.state(['!disabled'])
             self.create_button.state(['!disabled'])
@@ -82,8 +78,6 @@ class Adder(ttk.Frame):
     
     def load_OED(self):
         lang = 'en'
-#    app_id = '91cff402'
-#    app_key = 'edde3eeb5d8fe2ab96493642f535f580'
         app_id = self.appid_entry.get()
         app_key = self.keyid_entry.get()
         load_ODE(self.words, lang, app_id, app_key)
@@ -112,7 +106,6 @@ def load_words(dbfile, lang):
     
 def load_ODE(words, lang, app_id, app_key):
     headers = {'app_id': app_id, 'app_key': app_key}
-    print(headers)
     url = 'https://od-api.oxforddictionaries.com:443/api/v1/entries/'
     for w in words:            
         stem = w.lower()
@@ -152,5 +145,5 @@ def create_deck(words, lang, deckfile):
     
 if __name__ == '__main__':
     root = tkinter.Tk()
-    Adder(root)
+    MainFrame(root)
     root.mainloop()
