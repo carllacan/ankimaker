@@ -35,3 +35,7 @@ A packaged version is coming.
 ## Windows
 
 No installation required. Just download [the Windows executable](https://github.com/carllacan/ankimaker/raw/master/ankimaker.exe) and open it.
+
+## Thanks to
+
+* The creator of [Genanki](https://github.com/kerrickstaley/genanki)
