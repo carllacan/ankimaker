@@ -1,6 +1,7 @@
 import sqlite3
 import genanki
 import requests
+import tkinter
 from tkinter import ttk
 from tkinter import filedialog
 lang_names = {'en': 'English'}
@@ -17,40 +18,65 @@ class MainFrame(ttk.Frame):
      
         self.grid(column=0, row=0, sticky='nsew')
         
+        # Make the questions option list
+        question_load_ops = ['A Kindle', 'A list', 'A subtitle']
+
+        
+        self.questionload_list = tkinter.Listbox(self, width = 15, 
+                                                 height = 8)
+        self.questionload_list.grid(column=0, row=0, sticky = 'W')
+        for o in question_load_ops:
+            self.questionload_list.insert(tkinter.END, o)
+        
+        self.qframe = ttk.LabelFrame(self, text='Make a list of questions')
+        self.qframe.grid(column=1, row=0, sticky = 'NW')
+        
         # Load vocabulary file
         
-        ttk.Label(self, text='Vocabulary file').grid(column=0, row=0)
+        ttk.Label(self.qframe, text='Vocabulary file').grid(column=2, row=0, sticky='W')
         
-        self.loaddb_button = ttk.Button(self, text='Load',
+        self.loaddb_button = ttk.Button(self.qframe, text='Load',
                                       command=self.load_from_kindle)
-        self.loaddb_button.grid(column=1, row=0)
+        self.loaddb_button.grid(column=1, row=0, sticky='E')
         
+        # Make the answers option list
+        answers_load_ops = ['The OED', 'Wiktionary']
+        
+        self.answersload_list = tkinter.Listbox(self, width = 15, 
+                                                 height = 8)
+        self.answersload_list.grid(column=2, row=0, sticky = 'W')
+        for o in answers_load_ops:
+            self.answersload_list.insert(tkinter.END, o)
+            
+        self.aframe = ttk.LabelFrame(self, text='Make a list of questions')
+        self.aframe.grid(column=3, row=0)
         
         # Load from OED         
         
-        ttk.Label(self, text='App id').grid(column=0, row=2)
-        self.appid_entry = ttk.Entry(self, width=30)
-        self.appid_entry.grid(column=1, row = 2)
+        ttk.Label(self.aframe, text='App id').grid(column=0, row=0)
+        self.appid_entry = ttk.Entry(self.aframe, width=30)
+        self.appid_entry.grid(column=1, row = 0)
         
-        ttk.Label(self, text='App key').grid(column=0, row=3)
-        self.keyid_entry = ttk.Entry(self, width=30)
-        self.keyid_entry.grid(column=1, row = 3)
+        ttk.Label(self.aframe, text='App key').grid(column=0, row=1)
+        self.keyid_entry = ttk.Entry(self.aframe, width=30)
+        self.keyid_entry.grid(column=1, row = 1)
                 
-        self.loadOED_button = ttk.Button(self, text='Load definitions from OED',
+        self.loadOED_button = ttk.Button(self.aframe, text='Load definitions from OED',
                                       command=self.load_OED)
-        self.loadOED_button.grid(column=2, row=2, columnspan = 2, rowspan = 2)
+        self.loadOED_button.grid(column=0, row=2, columnspan = 2, rowspan = 2)
         self.loadOED_button.state(['disabled'])
         
         # Create vocabulary file
+        self.dframe = ttk.LabelFrame(self, text='Create your Anki deck')
+        self.dframe.grid(column=0, row=1, columnspan = 4)
+        ttk.Label(self.dframe, text='Anki deck name:').grid(column=0, row=2)
         
-        ttk.Label(self, text='Anki deck name:').grid(column=0, row=4)
-        
-        self.deckname_entry = ttk.Entry(self, width=30)
-        self.deckname_entry.grid(column=1, row = 4)
+        self.deckname_entry = ttk.Entry(self.dframe, width=30)
+        self.deckname_entry.grid(column=0, row=2, columnspan = 3)
       
-        self.create_button = ttk.Button(self, text='Create',
+        self.create_button = ttk.Button(self.dframe, text='Create',
                                       command=self.create_deck)
-        self.create_button.grid(column=2, row=4)
+        self.create_button.grid(column=1, row=2, columnspan = 1)
         self.create_button.state(['disabled'])
 
      
