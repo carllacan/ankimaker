@@ -24,5 +24,10 @@ class Loader(ttk.LabelFrame):
     def hide(self):
         pass
     
-    
-    
+    def activate(self):
+        for child in self.winfo_children():
+            child.state(['!disabled'])
+            
+    def disable(self):
+        for child in self.winfo_children():
+            child.state(['disabled'])

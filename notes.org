@@ -1,0 +1,20 @@
+* TO DO list
+** TODO make the OEDloader work
+** TODO add scrollbars
+** TODO add sorting by fields
+** TODO add load from subs
+** TODO add load from csvs
+** TODO add load from wiktionary
+** TODO add more languages
+** TODO save oed credentials
+** TODO save oed definitions <- is this legal?
+** TODO change the deck id, it could bring problems
+** TODO suggest a name for the deck
+** TODO add warning before loading from OED
+** TODO automatically create a basic html template for the cards
+** TODO convert DeckFrame.add_column into MainFrame.addfield
+
+* Resources
++ https://www.daniweb.com/programming/software-development/threads/445871/multiple-treeviews-formatting-in-tkinter
++ http://pyinmyeye.blogspot.com.es/2012/07/tkinter-tree-demo.html
++ http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html

@@ -19,11 +19,11 @@ class KindleLoader(Loader):
     def init_frame(self):
         self.dbfile = ''
     
-        self.fileentry = ttk.Entry(self, width=25)
-        self.fileentry.grid(column=0, row=1, columnspan=2, sticky='W')
+        self.file_entry = ttk.Entry(self, width=25)
+        self.file_entry.grid(column=0, row=1, columnspan=2, sticky='W')
         
         self.selecdb_button = ttk.Button(self, text='Browse',
-                                      command=self.selec_file)
+                                      command=self.select_file)
         self.selecdb_button.grid(column=2, row=1, sticky='E')
         
         self.usage_check = ttk.Checkbutton(self)
@@ -35,7 +35,7 @@ class KindleLoader(Loader):
                                       command=self.load_words)
         self.load_button.grid(column = 2, row = 2, sticky='W')
         
-    def selec_file(self):
+    def select_file(self):
 
         options = {'defaultextension':'db',
                    'parent':self,
@@ -43,8 +43,9 @@ class KindleLoader(Loader):
                    'title':'Select your Kindle vocabulary'}
             
         self.dbfile = filedialog.askopenfilename(**options)
-        self.fileentry.delete(0, tkinter.END)
-        self.fileentry.insert(0, self.dbfile)
+        if self.dbfile != '':
+            self.file_entry.delete(0, tkinter.END)
+            self.file_entry.insert(0, self.dbfile)
 
     def load_words(self):
         lang = 'en' # TODO: add a language selection list
@@ -56,17 +57,17 @@ class KindleLoader(Loader):
             where WORDS.lang=\'{}\''''.format(lang)
         cursor = vocab.execute(q)
         
-        words = {} 
-        words.keys()
+        info = {} 
+        info.keys()
         for w in cursor:
             stem = w[0]
             usage = w[1]
             timestamp = w[2]
-            if stem not in words.keys():
-                words[stem] = {'usage':usage}
+            if stem not in info.keys():
+                info[stem] = usage
                 
-        self.parent.add_words(words.keys()) # add new words
-        self.parent.add_info('Usage', words) # add usage of words
+        self.parent.add_words(info.keys()) # add new words
+        self.parent.add_info('Usage', info) # add usage of words
         
         
 #        if self.words.keys():
