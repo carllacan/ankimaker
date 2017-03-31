@@ -1,5 +1,5 @@
 # AnkiMaker
-AnkiMaker lets you automatically create Anki Decks by loading lists of words and then looking up the definitions. 
+AnkiMaker lets you automatically create Anki Decks by loading lists of words from a variety or sources and then looking up the definitions, translations and other things online.
 
 ## You can load words from 
 * Your Kindle's Vocabulary Builder list 
@@ -24,11 +24,11 @@ AnkiMaker lets you automatically create Anki Decks by loading lists of words and
 
 Linux users can download the Python file. To execute it you'll need to have genanki and requests installed. You can do:
 
-pip install genanki
-pip install requests
-mkdir ankimaker && cd ankimaker
-wget https://raw.githubusercontent.com/carllacan/ankimaker/master/ankimaker.py
-python ankimaker
+    pip install genanki
+    pip install requests
+    mkdir ankimaker && cd ankimaker
+    wget https://raw.githubusercontent.com/carllacan/ankimaker/master/ankimaker.py
+    python ankimaker
 
 A packaged version is coming.
 
@@ -39,3 +39,4 @@ No installation required. Just download [the Windows executable](https://github.
 ## Thanks to
 
 * The creator of [Genanki](https://github.com/kerrickstaley/genanki)
+* The creator of Anki
