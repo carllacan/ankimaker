@@ -1,0 +1,7 @@
+secrets
+vocab.db
+*.apkg
+__pycache__/*
+stuff/*
+tests/*
+/ankimaker/__pycache__/*
