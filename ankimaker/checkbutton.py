@@ -25,4 +25,5 @@ class CheckButton(Checkbutton):
         super().__init__(parent, variable = self.value, **params)
         
     def __bool__(self):
-        return self.value == self.onvalue
+        print(self.value.get())
+        return self.value.get() == self.onvalue

@@ -9,7 +9,9 @@ import sqlite3
 import tkinter
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import IntVar
 from loaders.loader import Loader
+from checkbutton import CheckButton
 
 class KindleLoader(Loader):
     
@@ -26,7 +28,7 @@ class KindleLoader(Loader):
                                       command=self.select_file)
         self.selecdb_button.grid(column=2, row=1, sticky='E')
         
-        self.usage_check = ttk.Checkbutton(self)
+        self.usage_check = CheckButton(self)
         self.usage_check.grid(column = 0, row = 2, sticky='E')
         self.usage_label = ttk.Label(self, text='Load also usage sentences')
         self.usage_label.grid(column = 1, row = 2, sticky='W')
@@ -67,7 +69,8 @@ class KindleLoader(Loader):
                 info[stem] = usage
                 
         self.parent.add_words(info.keys()) # add new words
-        self.parent.add_info('Usage', info) # add usage of words
+        if self.usage_check:
+            self.parent.add_info('Usage', info) # add usage of words
         
         
 #        if self.words.keys():
