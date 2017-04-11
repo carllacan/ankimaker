@@ -9,14 +9,13 @@ import sqlite3
 import tkinter
 from tkinter import ttk
 from tkinter import filedialog
-from tkinter import IntVar
 from loaders.loader import Loader
 from checkbutton import CheckButton
 
 class KindleLoader(Loader):
     
     def __init__(self, parent):
-        super().__init__(parent, 'Kindle')
+        super().__init__(parent, 'Kindle', 'Load words from a Kindle\'s Vocabulary Builder List')
         
     def init_frame(self):
         self.dbfile = ''
@@ -38,7 +37,6 @@ class KindleLoader(Loader):
         self.load_button.grid(column = 2, row = 2, sticky='W')
         
     def select_file(self):
-
         options = {'defaultextension':'db',
                    'parent':self,
                    'initialfile':'vocab.db',
@@ -64,7 +62,7 @@ class KindleLoader(Loader):
         for w in cursor:
             stem = w[0]
             usage = w[1]
-            timestamp = w[2]
+#            timestamp = w[2]
             if stem not in info.keys():
                 info[stem] = usage
                 
@@ -73,9 +71,6 @@ class KindleLoader(Loader):
             self.parent.add_info('Usage', info) # add usage of words
         
         
-#        if self.words.keys():
-#            self.loadOED_button.state(['!disabled'])
-#            self.create_button.state(['!disabled'])
             
         
             

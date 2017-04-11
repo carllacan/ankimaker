@@ -1,22 +1,25 @@
 * TO DO list
-** NODE make the OEDloader work
+** DONE make the OEDloader work
+** DONE modify interface so that there's only a list of loaders for both questions and answers
+** DONE make it possible to change between loaders
+** TODO add help buttons to the frames
+*** TODO add help buttons to the kindleloader
+*** TODO add help buttons to the oedloader
+*** TODO add help buttons to the fileloader
+*** TODO add help buttons to the wikloader
+** TODO make the labelframes have a fixed width and height
 ** TODO add "add from a textfile" frame
 ** TODO add "search on wiktionary" frame
-** TODO modify interface so that there's only a list of loaders for both questions and answers
-** TODO make it possible to change between options
-** DONE make the OEDloader work
-** TODO make it possible to change between loaders
 ** TODO add scrollbars
 ** TODO add sorting by fields
 ** TODO add load from subs
-** TODO add load from csvs
-** TODO add load from wiktionary
-** TODO add more languages
+** TODO language selector to kindle loader
+** TODO disable certain loaders when there are no questions
 ** TODO save oed credentials
 ** TODO save oed definitions <- is this legal?
+** TODO add warning before loading from OED
 ** TODO change the deck id, it could bring problems
 ** TODO suggest a name for the deck
-** TODO add warning before loading from OED
 ** TODO automatically create a basic html template for the cards
 ** TODO convert DeckFrame.add_column into MainFrame.addfield
 

@@ -22,42 +22,27 @@ class MainFrame(ttk.Frame):
         # Questions loading frame              
               
         loader_list = [loaders.KindleLoader,
-                       loaders.FileLoader]
+                       loaders.FileLoader,
+                       loaders.OEDLoader,
+                       loaders.WikLoader]
         
-        self.qloaders = []
+        self.loaders = []
         for l in loader_list:
             # initialize every loader's frame with the mainframe as parent
-            self.qloaders.append(l(self))
+            self.loaders.append(l(self))
         
         # Question loading option list
         
-        self.questionload_list = tkinter.Listbox(self, width = lists_width, 
-                                                 height = 8,
-                                                 selectmode = tkinter.SINGLE)
-        self.questionload_list.grid(column=0, row=0, sticky = 'N')
-        for op in self.qloaders:
-            self.questionload_list.insert(tkinter.END, op.name)   
-        self.questionload_list.bind('<<ListboxSelect>>', self.qselect)
+        self.list = tkinter.Listbox(self, width = lists_width, 
+                                    height = 8,
+                                    selectmode = tkinter.SINGLE)
+        self.list.grid(column=0, row=0, sticky = 'N')
+        for op in self.loaders:
+            self.list.insert(tkinter.END, op.name)   
+        self.list.bind('<<ListboxSelect>>', self.select)
         
-        # Answers loading frame
-        
-        loader_list = [loaders.OEDLoader,
-                       loaders.WikLoader]
-        
-        self.aloaders = []
-        for l in loader_list:
-            # initialize every loader's frame with the mainframe as parent
-            self.aloaders.append(l(self))
-        
-        # Answers loading option list
-        
-        self.answersload_list = tkinter.Listbox(self, width = lists_width, 
-                                                 height = 8,
-                                                 selectmode = tkinter.SINGLE)
-        self.answersload_list.grid(column=2, row=0, sticky = 'N')
-        for op in self.aloaders:
-            self.answersload_list.insert(tkinter.END, op.name) 
-        self.answersload_list.bind('<<ListboxSelect>>', self.aselect)
+
+        self.list.selection_set(0)      
 
         # Deck creation frame
         
@@ -68,11 +53,8 @@ class MainFrame(ttk.Frame):
         # Add padding to everything
         for child in self.winfo_children():
             child.grid_configure(padx=5, pady=5)
-                             
-        self.questionload_list.selection_set(0)                     
-        self.qselect()
-        self.answersload_list.selection_set(0)                     
-        self.aselect()
+                                            
+        self.select()
             
             
             
@@ -83,7 +65,7 @@ class MainFrame(ttk.Frame):
             if not w in self.words:
                 self.words[w] = {}
                 
-        self.activate_infoloaders()
+#        self.activate_infoloaders()
         self.dframe.activate()
         
     def get_words(self):
@@ -96,34 +78,23 @@ class MainFrame(ttk.Frame):
             if w in self.words:
                 self.words[w][col_name] = words[w]
         
-    def activate_infoloaders(self):
-        for l in self.infoloaders:
-            l.activate()    
+#    def activate_infoloaders(self):
+#        for l in self.infoloaders:
+#            l.activate()    
+#            
+#    def disable_infoloaders(self):
+#        for l in self.infoloaders:
+#            l.disable()
             
-    def disable_infoloaders(self):
-        for l in self.infoloaders:
-            l.disable()
-            
-    def qselect(self, event = None):
-        print('option', self.questionload_list.curselection(), 'selected')
-        for l in self.qloaders:
-            l.grid_forget()
-        
-        # show the first one in the list
-        index = self.questionload_list.curselection()[0]
-        self.qloaders[index].grid(column=1, row=0, sticky = 'N')
-        self.qloaders[index].grid_configure(padx=5, pady=5)    
-        
-    def aselect(self, event = None):
-        print('option', self.answersload_list.curselection(), 'selected')
-        for l in self.aloaders:
-            l.grid_forget()
-        
-        # show the first one in the list
-        index = self.answersload_list.curselection()[0]
-        self.aloaders[index].grid(column=2, row=0, sticky = 'N')
-        self.aloaders[index].grid_configure(padx=5, pady=5)
-     
+    def select(self, event = None):
+        current_selection = self.list.curselection() # a tuple of selected
+        if len(current_selection): # if there is a selected one
+            index = current_selection[0]
+            for l in self.loaders:
+                l.grid_forget()
+            self.loaders[index].grid(column=1, row=0, sticky = 'N')
+            self.loaders[index].grid_configure(padx=5, pady=5)    
+
 
     
         
