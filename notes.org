@@ -2,6 +2,7 @@
 ** NODE make the OEDloader work
 ** TODO add "add from a textfile" frame
 ** TODO add "search on wiktionary" frame
+** TODO modify interface so that there's only a list of loaders for both questions and answers
 ** TODO make it possible to change between options
 ** TODO add scrollbars
 ** TODO add sorting by fields

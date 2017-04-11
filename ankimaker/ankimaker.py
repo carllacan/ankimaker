@@ -13,49 +13,52 @@ class MainFrame(ttk.Frame):
  
     def init_gui(self):
         """Builds GUI."""
-        self.root.title('Kindle to Anki')     
+        self.root.title('AnkiMaker')     
         self.grid(column=0, row=0, sticky='nsew')
         
         lists_width = 10
         
-        # Question loading option list
-        question_load_ops = ['A Kindle', 'A list', 'A subtitle']
         
-        self.questionload_list = tkinter.Listbox(self, width = lists_width, 
-                                                 height = 8)
-        self.questionload_list.grid(column=0, row=0, sticky = 'N')
-        for o in question_load_ops:
-            self.questionload_list.insert(tkinter.END, o)
-            
-        self.questionload_list.bind('<<ListboxSelect>>', self.qselect)
-             
         # Questions loading frame              
               
-        self.questionloaders = []
+        loader_list = [loaders.KindleLoader,
+                       loaders.FileLoader]
         
-        self.qload = loaders.FileLoader(self)
-        self.qload.grid(column=1, row=0, sticky = 'N')
-
+        self.qloaders = []
+        for l in loader_list:
+            # initialize every loader's frame with the mainframe as parent
+            self.qloaders.append(l(self))
+        
+        # Question loading option list
+        
+        self.questionload_list = tkinter.Listbox(self, width = lists_width, 
+                                                 height = 8,
+                                                 selectmode = tkinter.SINGLE)
+        self.questionload_list.grid(column=0, row=0, sticky = 'N')
+        for op in self.qloaders:
+            self.questionload_list.insert(tkinter.END, op.name)   
+        self.questionload_list.bind('<<ListboxSelect>>', self.qselect)
+        
+        # Answers loading frame
+        
+        loader_list = [loaders.OEDLoader,
+                       loaders.WikLoader]
+        
+        self.aloaders = []
+        for l in loader_list:
+            # initialize every loader's frame with the mainframe as parent
+            self.aloaders.append(l(self))
         
         # Answers loading option list
-        answers_load_ops = ['The OED', 'Wiktionary']
         
         self.answersload_list = tkinter.Listbox(self, width = lists_width, 
-                                                 height = 8)
+                                                 height = 8,
+                                                 selectmode = tkinter.SINGLE)
         self.answersload_list.grid(column=2, row=0, sticky = 'N')
-        for o in answers_load_ops:
-            self.answersload_list.insert(tkinter.END, o)
-            
+        for op in self.aloaders:
+            self.answersload_list.insert(tkinter.END, op.name) 
         self.answersload_list.bind('<<ListboxSelect>>', self.aselect)
-        # Answers loading frame
-            
-        self.infoloaders = []
 
-        self.aload = loaders.WikLoader(self)
-        self.aload.grid(column=3, row=0, sticky = 'N')
-        
-        self.infoloaders.append(self.aload)
-        
         # Deck creation frame
         
         self.dframe = DeckFrame(self)
@@ -65,6 +68,13 @@ class MainFrame(ttk.Frame):
         # Add padding to everything
         for child in self.winfo_children():
             child.grid_configure(padx=5, pady=5)
+                             
+        self.questionload_list.selection_set(0)                     
+        self.qselect()
+        self.answersload_list.selection_set(0)                     
+        self.aselect()
+            
+            
             
     def add_words(self, words):
         # Adds entries to the table if they are not there already
@@ -94,11 +104,27 @@ class MainFrame(ttk.Frame):
         for l in self.infoloaders:
             l.disable()
             
-    def qselect(self, event):
-        print('option', event.widget.curselection()[0], 'selected')
+    def qselect(self, event = None):
+        print('option', self.questionload_list.curselection(), 'selected')
+        for l in self.qloaders:
+            l.grid_forget()
+        
+        # show the first one in the list
+        index = self.questionload_list.curselection()[0]
+        self.qloaders[index].grid(column=1, row=0, sticky = 'N')
+        self.qloaders[index].grid_configure(padx=5, pady=5)    
+        
+    def aselect(self, event = None):
+        print('option', self.answersload_list.curselection(), 'selected')
+        for l in self.aloaders:
+            l.grid_forget()
+        
+        # show the first one in the list
+        index = self.answersload_list.curselection()[0]
+        self.aloaders[index].grid(column=2, row=0, sticky = 'N')
+        self.aloaders[index].grid_configure(padx=5, pady=5)
      
-    def aselect(self, event):
-        print('option', event.widget.curselection()[0], 'selected')
+
     
         
 class DeckFrame(ttk.Frame):
