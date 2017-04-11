@@ -26,12 +26,14 @@ class MainFrame(ttk.Frame):
         self.questionload_list.grid(column=0, row=0, sticky = 'N')
         for o in question_load_ops:
             self.questionload_list.insert(tkinter.END, o)
-              
+            
+        self.questionload_list.bind('<<ListboxSelect>>', self.qselect)
+             
         # Questions loading frame              
               
         self.questionloaders = []
         
-        self.qload = loaders.KindleLoader(self)
+        self.qload = loaders.FileLoader(self)
         self.qload.grid(column=1, row=0, sticky = 'N')
 
         
@@ -44,11 +46,12 @@ class MainFrame(ttk.Frame):
         for o in answers_load_ops:
             self.answersload_list.insert(tkinter.END, o)
             
+        self.answersload_list.bind('<<ListboxSelect>>', self.aselect)
         # Answers loading frame
             
         self.infoloaders = []
 
-        self.aload = loaders.OEDLoader(self)
+        self.aload = loaders.WikLoader(self)
         self.aload.grid(column=3, row=0, sticky = 'N')
         
         self.infoloaders.append(self.aload)
@@ -90,7 +93,13 @@ class MainFrame(ttk.Frame):
     def disable_infoloaders(self):
         for l in self.infoloaders:
             l.disable()
+            
+    def qselect(self, event):
+        print('option', event.widget.curselection()[0], 'selected')
      
+    def aselect(self, event):
+        print('option', event.widget.curselection()[0], 'selected')
+    
         
 class DeckFrame(ttk.Frame):
         

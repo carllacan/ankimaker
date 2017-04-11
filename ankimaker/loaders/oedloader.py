@@ -1,13 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 30 16:35:02 2017
-
-@author: carles
-"""
 import requests
 import tkinter
 from tkinter import ttk
-from tkinter import filedialog
 from loaders.loader import Loader
 
 class OEDLoader(Loader):
