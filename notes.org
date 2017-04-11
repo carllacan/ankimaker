@@ -4,6 +4,8 @@
 ** TODO add "search on wiktionary" frame
 ** TODO modify interface so that there's only a list of loaders for both questions and answers
 ** TODO make it possible to change between options
+** DONE make the OEDloader work
+** TODO make it possible to change between loaders
 ** TODO add scrollbars
 ** TODO add sorting by fields
 ** TODO add load from subs
