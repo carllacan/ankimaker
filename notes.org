@@ -1,8 +1,6 @@
 * TO DO list
-** NODE make the OEDloader work
-** TODO add "add from a textfile" frame
-** TODO add "search on wiktionary" frame
-** TODO make it possible to change between options
+** DONE make the OEDloader work
+** TODO make it possible to change between loaders
 ** TODO add scrollbars
 ** TODO add sorting by fields
 ** TODO add load from subs
