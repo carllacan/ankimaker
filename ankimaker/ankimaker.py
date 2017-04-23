@@ -19,7 +19,7 @@ class MainFrame(ttk.Frame):
         lists_width = 10
         
         
-        # Questions loading frame              
+        # Loaders frame              
               
         loader_list = [loaders.KindleLoader,
                        loaders.FileLoader,
@@ -31,7 +31,7 @@ class MainFrame(ttk.Frame):
             # initialize every loader's frame with the mainframe as parent
             self.loaders.append(l(self))
         
-        # Question loading option list
+        # Loaders list
         
         self.list = tkinter.Listbox(self, width = lists_width, 
                                     height = 8,
@@ -78,13 +78,6 @@ class MainFrame(ttk.Frame):
             if w in self.words:
                 self.words[w][col_name] = words[w]
         
-#    def activate_infoloaders(self):
-#        for l in self.infoloaders:
-#            l.activate()    
-#            
-#    def disable_infoloaders(self):
-#        for l in self.infoloaders:
-#            l.disable()
             
     def select(self, event = None):
         current_selection = self.list.curselection() # a tuple of selected
