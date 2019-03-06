@@ -1,17 +1,5 @@
 # AnkiMaker
-AnkiMaker lets you automatically create Anki Decks by loading lists of words from a variety or sources and then looking up the definitions, translations and other things online.
-
-## You can load words from 
-* Your Kindle's Vocabulary Builder list 
-* [Soon] A list of words (so that you can use frequency lists and the like)
-* [Soon] The words on a file (so you can learn all the words in a book before you read it)
-
-## ...and make an Anki deck using those words and
-* Definitions from OED
-* The sentence where you originally encountered those words on your kindle
-* [Soon] Other dictionaries
-* [Soon] Pronunciations
-* [Soon] Images from Google
+AnkiMaker lets you automatically create Anki Decks out of your Kindle vocabulary lists and the OED.
 
 # How to use it
 
@@ -30,7 +18,7 @@ Linux users can download the Python file. To execute it you'll need to have gena
     wget https://raw.githubusercontent.com/carllacan/ankimaker/master/ankimaker.py
     python ankimaker
 
-A packaged version is coming.
+A packaged version is not available yet.
 
 ## Windows
 
