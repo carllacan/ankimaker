@@ -1,3 +1,7 @@
+# ATTENTION
+
+Oxford API has changed their API and this program no longer works. You are welcome to make a fork of it and adapt it, but I believe the Terms and Conditions changed as well and it might not be possible/legal to make something like AnkiMaker any more (or at least not using Oxford API)
+
 # AnkiMaker
 AnkiMaker lets you automatically create Anki Decks out of your Kindle vocabulary lists and the OED.
 
