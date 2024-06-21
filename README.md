@@ -1,6 +1,8 @@
 # ATTENTION
 
-Oxford API has changed their API and this program no longer works. You are welcome to make a fork of it and adapt it, but I believe the Terms and Conditions changed as well and it might not be possible/legal to make something like AnkiMaker any more (or at least not using Oxford API)
+Oxford API has changed their API and this program no longer works. You are welcome to make a fork of it and adapt it, but I believe the Terms and Conditions changed as well and it might not be possible/legal to make something like AnkiMaker any more (or at least not using Oxford API). I did some work on including a Wiktionary parser 7 years ago, but I didn't get very far. However Wiktionary does have an API that I seem to have missed when I started making that parser, and which could probably be used in place of the Oxford API. Better yet, it could be used for languages other than English.
+
+In any case I have found that makin my Anki cards by hand results in better retention, so you might be better served by not using any automation tools for this.
 
 # AnkiMaker
 AnkiMaker lets you automatically create Anki Decks out of your Kindle vocabulary lists and the OED.
